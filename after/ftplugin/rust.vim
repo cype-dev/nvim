@@ -11,11 +11,14 @@ if executable('rls')
     " Use Language Server formatting
 "   setlocal formatexpr=LanguageClient#textDocument_rangeFormatting()
 
-    " Set linting provider
+    " Set linting provider (rls with clippy)
     let b:ale_linters=['rls']
     let b:ale_rust_rls_toolchain='stable'
+    let g:ale_rust_rls_config={'rust': {'clippy_preference': 'on'}}
 else
     echoerr "RLS Language Server not installed"
+    " Use clippy as linter if rls is not available
+    let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 endif
 
 " Folding
