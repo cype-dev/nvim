@@ -1,11 +1,14 @@
 " Check if Language Server is installed
 if executable('rls')
     " Use Language Server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-        \ 'whitelist': ['*'],
-        \ })
+    if !exists('g:rust_ls_loaded')
+        let g:rust_ls_loaded=1
+        call lsp#register_server({
+            \ 'name': 'rls',
+            \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+            \ 'whitelist': ['rust'],
+            \ })
+    endif
     setlocal omnifunc=lsp#complete
 
     " Use Language Server formatting
