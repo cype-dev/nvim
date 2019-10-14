@@ -424,19 +424,19 @@ augroup END
 
     "Codecompletion"
         " Always show menu and do not autoselect/autoinsert match
-        set completeopt=noinsert,menuone,noselect
+        set completeopt=noinsert,menuone,noselect,preview
 
         " Hide file messages
         set shortmess+=c
+
+        " Set transparency of completion window
+        set pumblend=20
 
 "Undofile"
     " Persist undo history only if in subdirectory of $HOME
     autocmd vimrc BufReadPre,BufNewFile *
         \ if strpart(expand('%:p'), 0, strlen($HOME) + 1) == $HOME . '/'
         \ | setlocal undofile | endif
-
-    " Set undo file directory, use full path as name for undofile
-    set undodir=./.undo//,../.undo//,$HOME/.undo//
 
     " Number of saved changes
     set undolevels=1000
