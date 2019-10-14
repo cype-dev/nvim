@@ -385,14 +385,15 @@ augroup END
     set number
 
     " Use absolute line numbers in insert mode and if buffer is out of focus
+    let bt_ignore=['help', 'nofile', 'nowrite', 'quickfix']
     function! ToggleRelativeNumbers()
         if !exists('#relative_number#InsertEnter')
             augroup relative_number
                 autocmd!
                 autocmd BufLeave,FocusLost,InsertEnter *
-                    \ :setlocal norelativenumber
+                    \ if index(bt_ignore, &buftype) < 0 | :setlocal norelativenumber
                 autocmd BufEnter,FocusGained,InsertLeave *
-                    \ :setlocal relativenumber
+                    \ if index(bt_ignore, &buftype) < 0 | :setlocal relativenumber
             augroup END
         else
             augroup relative_number
