@@ -52,6 +52,7 @@ augroup END
         call minpac#add('scrooloose/nerdcommenter')
         call minpac#add('chaoren/vim-wordmotion')
         call minpac#add('junegunn/vim-easy-align')
+        call minpac#add('christoomey/vim-sort-motion')
 
         " Language dependent features
         call minpac#add('lervag/vimtex')
