@@ -111,8 +111,10 @@ augroup END
         " Set completion triggers
         let g:mucomplete#can_complete={
             \ 'default': {
-            \    'omni': { t -> strlen(&l:omnifunc) > 0 && t =~# 
-            \        '\%(\k\|\.\|\:\:\)$' }}}
+            \     'omni': { t -> strlen(&l:omnifunc) > 0 && t =~#
+            \         '\%(\k\|\.\|\:\:\|->\)$' },
+            \     'ulti': { t -> strlen(t) >=
+            \          get(g:, 'mucomplete#minimum_prefix_length', 2) }}}
 
     "vim-lsp"
         " Disable diagnostics
