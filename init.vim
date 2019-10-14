@@ -47,8 +47,6 @@ augroup END
         call minpac#add('lifepillar/vim-mucomplete')
         call minpac#add('sirver/UltiSnips')
         call minpac#add('honza/vim-snippets')
-        call minpac#add('Raimondi/delimitMate')
-        call minpac#add('alvan/vim-closetag')
         call minpac#add('tpope/vim-surround')
         call minpac#add('tpope/vim-repeat')
         call minpac#add('scrooloose/nerdcommenter')
@@ -86,13 +84,6 @@ augroup END
 
         " Set executives in filetype plugin
         let g:vista_executive_for={}
-
-    "delimitMate"
-        let delimitMate_expand_cr=1
-
-    "Rainbow"
-        " Activate parantheses color based on level
-        let g:rainbow_active=1
 
     "Gruvbox"
         " Gruvbox theme
@@ -206,9 +197,9 @@ augroup END
             \   'header':  ['fg', 'Comment'] }
 
     "Compatibility"
-        " Expand snippet, delimiter or enter newline depending on context
+        " Expand snippet or enter newline depending on context
         let g:UltiSnipsExpandTrigger="<NOP>"
-        imap <silent> <expr> <CR> mucomplete#ultisnips#expand_snippet("\<Plug>delimitMateCR")
+        imap <silent> <expr> <CR> mucomplete#ultisnips#expand_snippet("\<cr>")
 
 "Tags"
     " Search recursively for tags file
