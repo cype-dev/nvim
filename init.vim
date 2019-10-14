@@ -1,8 +1,12 @@
 " Enable all features of Vim
 set nocompatible
 
+if empty($XDG_CONFIG_HOME)
+    let $XDG_CONFIG_HOME = "$HOME/.config"
+endif
+
 " Set shell
-set shell=/bin/sh
+set shell=/usr/bin/sh
 
 " Default augroup
 augroup vimrc
@@ -271,9 +275,9 @@ augroup END
 "Spell Checking"
     " Set spell checking languages
     set spelllang=en_us,de_de
-    set spellfile=$HOME/.vim/spell/spell.utf8.add
-    set spellfile+=$HOME/.vim/spell/en.utf-8.add
-    set spellfile+=$HOME/.vim/spell/de.utf-8.add
+    set spellfile=$XDG_CONFIG_HOME/nvim/spell/spell.utf8.add
+    set spellfile+=$XDG_CONFIG_HOME/nvim/spell/en.utf-8.add
+    set spellfile+=$XDG_CONFIG_HOME/nvim/spell/de.utf-8.add
  
 "Concealing"
     " Show unconcealed text in insert mode"
