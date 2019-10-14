@@ -24,7 +24,7 @@ augroup END
         call minpac#add('drzel/vim-line-no-indicator')
 
         " Editor features
-        call minpac#add('majutsushi/tagbar')
+        call minpac#add('liuchengxu/vista.vim')
         call minpac#add('prabirshrestha/async.vim')
         call minpac#add('prabirshrestha/vim-lsp')
         call minpac#add('thomasfaingnaert/vim-lsp-snippets')
@@ -76,12 +76,12 @@ augroup END
         let g:airline_section_z=
             \ '%#__accent_bold#%{LineNoIndicator()}%#__restore__#%2c'
 
-    "Tagbar"
-        " Toggle Tagbar
-        map <silent> <Leader>tt :TagbarToggle<CR>
+    "Vista.vim"
+        " Toggle vista
+        map <silent> <Leader>tt :Vista!!<CR>
 
-        " Enable usage of leader key in tagbar window
-        let g:tagbar_map_showproto=""
+        " Set executives in filetype plugin
+        let g:vista_executive_for={}
 
     "delimitMate"
         let delimitMate_expand_cr=1
@@ -464,7 +464,7 @@ augroup END
     " Number of characters to skip while scrolling horizontally
     set sidescroll=1
 
-    " Number of lines to show under cursor while scrolling
+    " Number of lines to keep below/above cursor while scrolling
     set scrolloff=5
 
 "Mouse"

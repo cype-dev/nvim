@@ -8,8 +8,14 @@ if executable('clangd')
             \ 'whitelist': ['cpp'],
             \ })
     endif
+
+    " Set language server as omnifunc
     setlocal omnifunc=lsp#complete
+
 "   setlocal formatexpr=LanguageClient_textDocument_rangeFormatting
+
+    " Set vista executive
+    let g:vista_executive_for.cpp='vim_lsp'
 else
     echoerr 'Clangd Language Server not installed'
 endif

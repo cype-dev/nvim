@@ -9,6 +9,8 @@ if executable('bash-language-server')
             \ 'whitelist': ['sh'],
             \ })
     endif
+
+    " Set language server as omnifunc
     setlocal omnifunc=lsp#complete
 else
     echoerr "bash-language-server not installed"

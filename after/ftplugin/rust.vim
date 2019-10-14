@@ -9,6 +9,8 @@ if executable('rls')
             \ 'whitelist': ['rust'],
             \ })
     endif
+
+    " Set language server as omnifunc
     setlocal omnifunc=lsp#complete
 
     " Use Language Server formatting
@@ -18,6 +20,9 @@ if executable('rls')
     let b:ale_linters=['rls']
     let b:ale_rust_rls_toolchain='stable'
     let b:ale_rust_rls_config={'rust': {'clippy_preference': 'on'}}
+
+    " Set vista executive
+    let g:vista_executive_for.rust='vim_lsp'
 else
     echoerr "RLS Language Server not installed"
     " Use clippy as linter if rls is not available
@@ -27,37 +32,3 @@ endif
 " Folding
 setlocal foldmethod=marker
 setlocal foldmarker={,}
-
-" Compatibility settings for tagbar and rust
-let g:tagbar_type_rust = {
-  \ 'ctagstype' : 'rust',
-  \ 'kinds' : [
-      \ 'n:modules',
-      \ 's:structures:1',
-      \ 'i:interfaces',
-      \ 'c:implementations',
-      \ 'f:functions:1',
-      \ 'g:enumerations:1',
-      \ 't:type aliases:1:0',
-      \ 'v:constants:1:0',
-      \ 'M:macros:1',
-      \ 'm:fields:1:0',
-      \ 'e:enum variants:1:0',
-      \ 'P:methods:1',
-  \ ],
-  \ 'sro': '::',
-  \ 'kind2scope' : {
-      \ 'n': 'module',
-      \ 's': 'struct',
-      \ 'i': 'interface',
-      \ 'c': 'implementation',
-      \ 'f': 'function',
-      \ 'g': 'enum',
-      \ 't': 'typedef',
-      \ 'v': 'variable',
-      \ 'M': 'macro',
-      \ 'm': 'field',
-      \ 'e': 'enumerator',
-      \ 'P': 'method',
-  \ },
-\ }

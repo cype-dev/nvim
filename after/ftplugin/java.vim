@@ -7,7 +7,12 @@ if executable('java') && executable('jdtls')
             \ 'whitelist': ['java'],
             \ })
     endif
+
+    " Set language server as omnifunc
     setlocal omnifunc=lsp#complete
+
+    " Set vista executive
+    let g:vista_executive_for.java='vim_lsp'
 else
     echoerr "Eclipse Language Server not installed"
 endif
