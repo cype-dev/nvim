@@ -21,7 +21,6 @@ augroup END
 
         " Theme
         call minpac#add('morhetz/gruvbox')
-        call minpac#add('luochen1990/rainbow')
         call minpac#add('nathanaelkane/vim-indent-guides')
         call minpac#add('vim-airline/vim-airline')
         call minpac#add('vim-airline/vim-airline-themes')
@@ -40,6 +39,7 @@ augroup END
         call minpac#add('junegunn/limelight.vim')
         call minpac#add('reedes/vim-pencil')
         call minpac#add('tpope/vim-fugitive')
+        call minpac#add('RRethy/vim-hexokinase')
 
         " Editing features
         call minpac#add('junegunn/fzf')
@@ -122,6 +122,22 @@ augroup END
         map <silent> <Leader>lh :LspHover<CR>
         map <silent> <Leader>ld :LspPeekDefinition<CR>
 
+    "Ale"
+        " Show diagnostics inline
+        let g:ale_virtualtext_cursor=1
+
+        " Set colors of inline diagnostics
+        highlight link ALEVirtualTextError ALEErrorSign
+        highlight link ALEVirtualTextWarning ALEWarningSign
+        highlight link ALEVirtualTextInfo ALEInfoSign
+
+        " Always show sign column
+        let g:ale_sign_column_always=1
+
+        " Set symbols used in sign column
+        let g:ale_sign_error='✘'
+        let g:ale_sign_warning='⚠'
+
     "Goyo"
         " Toggle Limelight, Pencil and relative numbers with Goyo
         augroup goyo_config
@@ -140,6 +156,12 @@ augroup END
         let g:limelight_conceal_ctermfg=245
         let g:limelight_conceal_guifg='#928374'
 
+    "vim-hexokinase"
+        let g:Hexokinase_highlighters=['foregroundfull']
+
+        " Toggle keybinds
+        map <silent> <Leader>ht :HexokinaseToggle<CR>
+
     "Indent Guides"
         " Enable Indent Guides
         let g:indent_guides_enable_on_vim_startup=1
@@ -155,6 +177,9 @@ augroup END
 
         " Hide first guide
         let g:indent_guides_start_level=2
+
+        " Disable in auxiliary windows
+        let g:indent_guides_exclude_filetypes=['help', 'markdown.lsp-hover']
 
     "vim-easy-align"
         " Keychord for aligning in visual and normal mode
@@ -324,7 +349,7 @@ augroup END
     set visualbell
 
     " Highlight current line
-"   set cursorline
+    set cursorline
 
     " Highlight 81st column on every line, highlight everything beyond 120
     let &colorcolumn="81,".join(range(121,999),",")
