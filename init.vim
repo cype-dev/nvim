@@ -367,9 +367,15 @@ augroup END
     set foldlevelstart=99
 
 "Views"
-    " Load perisistent views, write view on save
-    autocmd vimrc BufWinEnter *.* silent! loadview
-    autocmd vimrc BufWrite *.* mkview
+    " Load perisistent views  only if in subdirectory of $HOME
+    autocmd vimrc BufWinEnter *.*
+        \ if strpart(expand('%:p'), 0, strlen($HOME) + 1) == $HOME . '/'
+        \ | silent! loadview | endif
+
+    " Write view on save only if in subdirectory of $HOME
+    autocmd vimrc BufWrite *.*
+        \ if strpart(expand('%:p'), 0, strlen($HOME) + 1) == $HOME . '/'
+        \ | mkview | endif
 
     " Only save folds and cursor position in view
     set viewoptions=folds,cursor
