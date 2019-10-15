@@ -39,7 +39,6 @@ augroup END
         call minpac#add('junegunn/limelight.vim')
         call minpac#add('reedes/vim-pencil')
         call minpac#add('tpope/vim-fugitive')
-        call minpac#add('RRethy/vim-hexokinase')
 
         " Editing features
         call minpac#add('junegunn/fzf')
@@ -149,12 +148,6 @@ augroup END
         " Limelight theme
         let g:limelight_conceal_ctermfg=245
         let g:limelight_conceal_guifg='#928374'
-
-    "vim-hexokinase"
-        let g:Hexokinase_highlighters=['foregroundfull']
-
-        " Toggle keybinds
-        map <silent> <Leader>ht :HexokinaseToggle<CR>
 
     "Indent Guides"
         " Enable Indent Guides
