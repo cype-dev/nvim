@@ -112,8 +112,8 @@ augroup END
         let g:lsp_diagnostics_enabled=0
 
         " Lsp feature keybinds
-        map <silent> <Leader>lh :LspHover<CR>
-        map <silent> <Leader>ld :LspPeekDefinition<CR>
+        map <silent> <Leader>lh <plug>(lsp-hover)
+        map <silent> <Leader>ld <plug>(lsp-peek-definition)
 
     "Ale"
         " Show diagnostics inline
