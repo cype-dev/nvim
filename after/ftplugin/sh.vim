@@ -1,17 +1,19 @@
 " Set Language Server provider
 if executable('bash-language-server')
-    if !exists('g:sh_ls_loaded')
-        let g:sh_ls_loaded=1
-        call lsp#register_server({
-            \ 'name': 'bash-language-server',
-            \ 'cmd': {server_info->[&shell, &shellcmdflag,
-            \     'bash-language-server', 'start']},
-            \ 'whitelist': ['sh'],
-            \ })
-    endif
+    call lsp#register_server({
+        \ 'name': 'bash-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag,
+        \     'bash-language-server', 'start']},
+        \ 'whitelist': ['sh'],
+        \ })
+endif
 
+function! s:on_lsp_buffer_enabled() abort
     " Set language server as omnifunc
     setlocal omnifunc=lsp#complete
-else
-    echoerr "bash-language-server not installed"
-endif
+endfunc
+
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END

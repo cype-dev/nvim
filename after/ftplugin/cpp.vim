@@ -1,25 +1,26 @@
 " Use Language Server if installed
 if executable('clangd')
-    if !exists('g:cpp_ls_loaded')
-        let g:cpp_ls_loaded=1
-        call lsp#register_server({
-            \ 'name': 'clangd',
-            \ 'cmd': {server_info->['clangd']},
-            \ 'whitelist': ['cpp'],
-            \ })
-    endif
+    call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'whitelist': ['cpp'],
+        \ })
+endif
 
+function! s:on_lsp_buffer_enabled() abort
     " Set language server as omnifunc
     setlocal omnifunc=lsp#complete
 
-"   setlocal formatexpr=LanguageClient_textDocument_rangeFormatting
+    " Set folding based on language server
+    setlocal foldmethod=expr
+    setlocal foldexpr=lsp#ui#vim#folding#foldexpr()
+    setlocal foldtext=lsp#ui#vim#folding#foldtext()
 
-    " Set vista executive
+    " Set language server as vista executive
     let g:vista_executive_for.cpp='vim_lsp'
-else
-    echoerr 'Clangd Language Server not installed'
-endif
+endfunc
 
-" Folding
-setlocal foldmethod=marker
-setlocal foldmarker={,}
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
