@@ -21,7 +21,7 @@ augroup END
 
         " Theme
         call minpac#add('morhetz/gruvbox')
-        call minpac#add('nathanaelkane/vim-indent-guides')
+        call minpac#add('lukas-reineke/indent-blankline.nvim', {'branch': 'lua'})
         call minpac#add('vim-airline/vim-airline')
         call minpac#add('vim-airline/vim-airline-themes')
         call minpac#add('drzel/vim-line-no-indicator')
@@ -149,24 +149,12 @@ augroup END
         let g:limelight_conceal_ctermfg=245
         let g:limelight_conceal_guifg='#928374'
 
-    "Indent Guides"
-        " Enable Indent Guides
-        let g:indent_guides_enable_on_vim_startup=1
+    "Indent Blankline"
+        " Do not use listchar for space between indent lines
+        let g:indent_blankline_space_char=' '
 
-        " Disable hotkey for enable/disable
-        let g:indent_guides_default_mapping=0
-
-        " Let theme set colors
-        let g:indent_guides_auto_colors=0
-
-        " Set width of the guides
-        let g:indent_guides_guide_size=1
-
-        " Hide first guide
-        let g:indent_guides_start_level=2
-
-        " Disable in auxiliary windows
-        let g:indent_guides_exclude_filetypes=['help', 'markdown.lsp-hover']
+        " Hide first indent line
+        let g:indent_blankline_show_first_indent_level=v:false
 
     "vim-easy-align"
         " Keychord for aligning in visual and normal mode
@@ -264,14 +252,14 @@ augroup END
     let g:listchars_enabled=0
     function! ToggleListChars()
         if g:listchars_enabled == 0
-            IndentGuidesDisable
+            IndentBlanklineDisable
             set list
             let g:listchars_enabled=1
         elseif g:listchars_enabled == 1
             set nolist
             let g:listchars_enabled=2
         else
-            IndentGuidesEnable
+            IndentBlanklineEnable
             let g:listchars_enabled=0
         endif
     endfunction
