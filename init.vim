@@ -1,8 +1,8 @@
 " Enable all features of Vim
 set nocompatible
 
-if empty($XDG_CONFIG_HOME)
-    let $XDG_CONFIG_HOME = "$HOME/.config"
+if empty("$XDG_CONFIG_HOME")
+    let $XDG_CONFIG_HOME = "~/.config"
 endif
 
 " Set shell
