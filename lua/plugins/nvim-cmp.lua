@@ -33,8 +33,8 @@ cmp.setup {
     expand = function(args) luasnip.lsp_expand(args.body) end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-k>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-j>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping(function() -- Open snippet choices or completion
       if luasnip.choice_active() then
         require 'luasnip.extras.select_choice'()
@@ -80,7 +80,7 @@ cmp.setup {
       cmp.config.compare.score,
       cmp.config.compare.recently_used,
       cmp.config.compare.locality,
-      lspkind_comparator {
+      lspkind_comparator { -- {{{
         kind_priority = {
           Field = 11,
           Property = 11,
@@ -108,7 +108,7 @@ cmp.setup {
           Unit = 1,
           Value = 1,
         },
-      },
+      }, -- }}}
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
       cmp.config.compare.order,
@@ -139,6 +139,7 @@ cmp.setup {
     },
   },
 }
+
 -- Insert parenthesis after autocompleting functions
 local autopairs = require 'nvim-autopairs.completion.cmp'
 cmp.event:on('confirm_done', autopairs.on_confirm_done())

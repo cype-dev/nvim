@@ -5,7 +5,7 @@ require('zen-mode').setup {
     backdrop = 1,  -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
     width    = .5, -- width of the Zen window (percentage)
     height   = 1,  -- height of the Zen window (percentage)
-    options = { -- vim.wo options
+    options  = {   -- vim.wo options
       signcolumn     = 'no',  -- disable signcolumn
       number         = false, -- disable number column
       relativenumber = false, -- disable relative numbers

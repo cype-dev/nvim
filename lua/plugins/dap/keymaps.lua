@@ -1,0 +1,7 @@
+local dap = require('dap')
+vim.keymap.set('n', '<Leader>db',  dap.toggle_breakpoint, { silent = true, desc = 'Toggle breakpoint'    })
+vim.keymap.set('n', '<Leader>dc',  dap.continue,          { silent = true, desc = 'Start/continue debugging session' })
+vim.keymap.set('n', '<Leader>dss', dap.step_over,         { silent = true, desc = 'Step over expression' })
+vim.keymap.set('n', '<Leader>dsi', dap.step_into,         { silent = true, desc = 'Step into expression' })
+vim.keymap.set('n', '<Leader>dso', dap.step_out,          { silent = true, desc = 'Step out of expression' })
+vim.keymap.set('n', '<Leader>de',  dap.terminate,         { silent = true, desc = 'Stop debugging session' })

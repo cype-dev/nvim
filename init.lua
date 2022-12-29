@@ -1,11 +1,6 @@
 -- Vimrc local augroup
 local augroup = vim.api.nvim_create_augroup('vimrc', { clear = true })
 
----------------
--- Behaviour --
----------------
-vim.opt.updatetime = 1
-
 -----------------
 -- Indentation --
 -----------------
@@ -32,27 +27,28 @@ vim.opt.breakindentopt = 'shift:2' -- Add additional 2 columns to wrapped lines
 -- Whitespace --
 ----------------
 -- Display trailing whitespace
-vim.opt.list = true
-vim.opt.listchars = { trail = '·' }
--- vim.fn.matchadd('errorMsg', [[\s\+$]])
+vim.opt.list      = true
+vim.opt.listchars = { trail = '·', tab = '█▒' }
+-- -- Show trailing whitespace as error
+-- vim.fn.matchadd('ErrorMsg', [[\s\+$]])
 
 ------------
 -- Status --
 ------------
 -- Hide mode in (default) status line
-vim.opt.showmode = false
+vim.opt.showmode       = false
 -- Show signcolumn
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn     = 'yes'
 -- Highlight line cursor is on
-vim.opt.cursorline = true
+vim.opt.cursorline     = true
 -- Use relative numbers except for cursor line
-vim.opt.number = true
+vim.opt.number         = true
 vim.opt.relativenumber = true
 
 -- Change bg color at column 81
-vim.opt.colorcolumn = '81'
+vim.opt.colorcolumn    = '81'
 -- -- Change bg color beyond column 120
--- for i=121,999 do vim.opt.colorcolumn:append (tostring(i)) end
+-- for i = 121,999 do vim.opt.colorcolumn:append (tostring(i)) end
 
 -------------
 -- Folding --
@@ -60,7 +56,7 @@ vim.opt.colorcolumn = '81'
 -- Start unfolded
 vim.opt.foldlevelstart = 99
 -- Save only folds and cursor position
-vim.opt.viewoptions = 'folds,cursor'
+vim.opt.viewoptions    = 'folds,cursor'
 -- Save/Load view
 vim.api.nvim_create_autocmd('BufWinEnter', { group = augroup, pattern = '*', command = 'silent! loadview' })
 vim.api.nvim_create_autocmd('BufWrite', { group = augroup, pattern = '*', command = 'mkview' })
@@ -82,14 +78,18 @@ vim.keymap.set(
   'i',
   '<S-CR>',
   '<CR><C-U>',
-  { silent = true, desc = 'Insert empty newline (even with format option "r")' }
+  { silent = true, desc = 'Insert empty newline (no comment)' }
 )
+vim.g.mapleader = ' '
+
 
 ---------------
--- Scrolling --
+-- Behaviour --
 ---------------
 -- Keep lines between cursor and bottom while scrolling
-vim.opt.scrolloff = 5
+vim.opt.scrolloff     = 5
+vim.opt.updatetime    = 1
+vim.opt.termguicolors = true
 
 -------------
 -- Folding --
@@ -99,7 +99,8 @@ vim.opt.foldcolumn = '1'
 -- Text to display on folds
 vim.opt.foldtext = "getline(v:foldstart).'...'.trim(getline(v:foldend))"
 -- Characters used for folds
-vim.opt.fillchars:append { fold = ' ', foldopen = '', foldclose = '', foldsep = '│' }
+local signs = require('config.theme').fold_signs
+vim.opt.fillchars:append { fold = ' ', foldopen = signs.expanded, foldclose = signs.collapsed, foldsep = '│' }
 
 -----------
 -- Mouse --

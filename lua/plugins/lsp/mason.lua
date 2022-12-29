@@ -1,8 +1,13 @@
 local augroup = vim.api.nvim_create_augroup('mason-config', { clear = true })
+
 ----------------------
 -- Language Servers --
 ----------------------
-require('mason').setup()
+require('mason').setup{
+  ui = {
+    border = require('config.theme').border
+  }
+}
 require('mason-lspconfig').setup()
 require('lsp-inlayhints').setup()
 
@@ -19,6 +24,7 @@ local on_attach = function(client, bufnr)
   --   'BufWritePre',
   --   { group = augroup, pattern = '*', callback = function() vim.lsp.buf.format { timeout_ms = 1000 } end }
   -- )
+  require('plugins.lsp.keymaps').setup(bufnr)
 end
 
 require('mason-lspconfig').setup_handlers {
@@ -31,6 +37,7 @@ require('mason-lspconfig').setup_handlers {
   end,
   -- Server specific handlers
   ['sumneko_lua'] = function() require('plugins.lsp.servers.lua').setup(capabilities, on_attach) end,
+  ['rust_analyzer'] = function() require('plugins.lsp.servers.rust').setup(capabilities, on_attach) end,
 }
 
 -------------

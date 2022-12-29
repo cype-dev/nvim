@@ -3,5 +3,8 @@ require('nvim-lightbulb').setup {
   autocmd = {
     enabled = true,
   },
+  sign = {
+    priority = 13
+  },
 }
--- vim.fn.sign_define('LightBulbSign', { text = "i", texthl = "", linehl="", numhl="" })
+vim.fn.sign_define('LightBulbSign', { text = '💡', texthl = 'LightBulbSign', linehl='', numhl='' })
