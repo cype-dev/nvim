@@ -1,0 +1,7 @@
+require('config.theme')
+require('config.indentation')
+require('config.search')
+require('config.navigation')
+require('config.clipboard')
+require('config.spelling')
+require('config.folds')
